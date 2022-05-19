@@ -41,7 +41,7 @@ class HomeController extends Controller
             CURLOPT_TIMEOUT => 60,
             CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
             CURLOPT_CUSTOMREQUEST => "POST",
-            CURLOPT_POSTFIELDS => 'type=tt&count=5action=getMusic&url='.$url,
+            CURLOPT_POSTFIELDS => 'type=tt&count=5&action=getMusic&url='.$url,
         ));
 
         $response = curl_exec($curl);
