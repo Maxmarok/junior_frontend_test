@@ -8,6 +8,10 @@
 }
 
 @media only screen and (max-width: 1300px) {
+    .products__zero {
+      background-image: url('../img/shutter_stock_md.png');
+    }
+
     .mobile-gray {
         color: #808191;
     }
@@ -988,6 +992,17 @@
   }
 
   @media only screen and (max-width: 767px) {
+    .products__title2 {
+      width: 240px;
+    }
+
+    .products__zero {
+      height: 500px;
+      background-image: url('../img/shutter_stock_sm.png');
+      background-position: bottom right;
+      padding-left: 15px;
+    }
+    
     .modal-dialog.modal-xl {
         max-width: 900px;
     }
@@ -1588,6 +1603,11 @@
       width: 55px;
       height: 55px;
     }
+    .products__preview > img {
+      width: 55px;
+      height: 55px;
+    }
+
     // .products__details {
     //   padding-left: 24px;
     // }
