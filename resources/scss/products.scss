@@ -250,3 +250,59 @@
     margin-bottom: 9px;
     color: #808191;
   }
+
+  .products {
+    &__cover {
+      position: relative;
+      width: 63px;
+      height: 63px;
+      margin-right: 6px;
+
+      & img {
+        width: 63px;
+        height: 63px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+
+      &::before {
+        content: "";
+        position: absolute;
+        top: 1px;
+        right: 8px;
+        width: 11px;
+        height: 11px;
+        background-color: #fff;
+        z-index: 10;
+        border-radius: 100%;
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: -1px;
+        right: 7px;
+        width: 11px;
+        height: 11px;
+        background-color: #FF4242;
+        z-index: 10;
+        border-radius: 100%;
+      }
+    }
+
+    &__title {
+      margin-bottom: 4px;
+      font-weight: 600;
+      font-size: 19px;
+      line-height: 23px;
+      color: #808191;
+    }
+
+    &__song {
+      font-weight: 600;
+      font-size: 13px;
+      line-height: 18px;
+      color:  #808191;
+    }
+
+  }

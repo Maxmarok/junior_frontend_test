@@ -12,6 +12,10 @@
         color: #808191;
     }
 
+  .mobile-btn {
+    cursor: pointer;
+  }
+
     .footer {
         flex-wrap: wrap;
     }
@@ -984,6 +988,10 @@
   @media (max-width: 900px) {
     .mfp-container {
       padding: 30px 20px;
+    }
+    .banner {
+      background-position: 150%;
+      background-size: 76% 102%;
     }
   }
 
@@ -2130,3 +2138,20 @@
       letter-spacing: -.5px;
     }
   }
+
+@media (max-width: 640px) {
+  .banner {
+    min-height: 500px;
+    background-position: bottom left;
+    background-size: 159% 98%;
+  }
+
+}
+
+@media (max-width: 486px) {
+  .banner {
+    background-image: url("../images/mobile-banner-bg.png");
+    background-position: bottom center;
+    background-size: 103% 76%;
+  }
+}

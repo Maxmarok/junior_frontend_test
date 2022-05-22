@@ -27,9 +27,9 @@
         </div>
 
         <div class="page__row" v-if="mobile">
-            <div class="d-flex flex-row align-items-center justify-content-between">
+            <div class="d-flex flex-row align-items-center justify-content-between mobile-btn">
                 <h1>Мои треки</h1>
-                <img :src="url + 'img/icon_plus_main.svg'" @click="openMusicModal" class="mb-2" />
+                <img :src="url + 'img/icon_plus_main.svg'" @click="openMusicModal('music-modal')" class="mb-2" />
             </div>
         </div>
 
@@ -52,14 +52,34 @@
             </div>
         </div>
 
+
+
         <div class="page__row page__row_border">
             <div class="page__col">
-                <div class="products__grid">
-                    <div class="products__item" @click="openMusicModal" v-if="!mobile">
+                <div class="page__banner banner" v-if="!items.length">
+                    <h2 class="banner__title">Загрузи свой первый трек</h2>
+                    <p class="banner__descr">
+                        Твои будущие фанаты ждут! Жми на кнопку «добавить трек» и переходи к продвижению прямо сейчас.
+                    </p>
+                    <div class="products__item" @click="openMusicModal('music-modal')" v-if="!mobile">
+                        <button class="btn banner__btn">Добавить трек</button>
+                    </div>
+                </div>
+                <div class="products__grid" v-else>
+                    <div class="products__item" @click="openMusicModal('music-modal')" v-if="!mobile">
                         <div class="products__preview new"></div>
                         <div class="products__details">
                             <div class="products__title title">Добавить трек</div>
                         </div>
+                    </div>
+                    <div class="products__item" v-for="item in items">
+                      <div class="products__cover">
+                        <img :src="item.image" alt="Фото обложки">
+                      </div>
+                      <div class="products__info">
+                        <h3 class="products__title">{{item.author}}</h3>
+                        <span class="products__song">{{item.title}}</span>
+                      </div>
                     </div>
                 </div>
             </div>
@@ -75,6 +95,35 @@
                     <p class="form-tip" v-if="waiting" v-html="'Ищем трек, это займет от 5 до 10 секунд'" />
                 </div>
             </div>
+        </b-modal>
+        <b-modal id="music-info-modal" centered hide-footer>
+          <div class="modal-center d-flex flex-column text-center mx-auto">
+            <div class="form-block">
+              <div class="form-img">
+                <img :src="coverThumb" alt="Фото обложки">
+              </div>
+              <label class="form-label">
+                <span>Ссылка на звук в TikTok</span>
+                <input type="text" class="form-control" placeholder="Ссылка на звук в TikTok" v-model="val" required="" />
+              </label>
+              <label class="form-label">
+                <span>Название</span>
+                <input type="text" class="form-control" placeholder="Название трека" v-model="title" required="" />
+              </label>
+              <label class="form-label">
+                <span>Исполнитель</span>
+                <input type="text" class="form-control" placeholder="Исполнитель трека" v-model="author" required="" />
+              </label>
+              <label class="form-label">
+                <span>Альбом</span>
+                <input type="text" class="form-control" placeholder="Альбом трека" v-model="album" required="" />
+              </label>
+              <p class="form-tip text-danger" v-if="error" v-html="error" />
+              <button class="btn btn-lg btn-primary btn-block my-4" @click="addMusic"  v-if="!waiting" :disabled="!val || !title">Добавить</button>
+              <div class="loading" :class="{active: waiting}" />
+              <p class="form-tip" v-if="waiting" v-html="'Добавляем трек, это займет от 5 до 10 секунд'" />
+            </div>
+          </div>
         </b-modal>
     </div>
 </template>
@@ -93,9 +142,13 @@
                 editing: false,
                 val: this.value,
                 music: null,
+                title: null,
+                author: null,
+                album: null,
+                coverThumb: null,
                 error: null,
                 waiting: false,
-                items: null,
+                items: [],
             }
         },
 
@@ -103,14 +156,18 @@
             this.getMusicList();
         },
 
-        computed: {
+        updated() {
+          this.getMusicList();
+        },
+
+      computed: {
             ...mapGetters(['user', 'userAuthorized', 'url', 'tablet', 'mobile']),
         },
 
         methods: {
-            openMusicModal() {
+            openMusicModal(id) {
                 this.waiting = this.error = false;
-                this.$bvModal.show('music-modal');
+                this.$bvModal.show(id);
             },
 
             getMusicList() {
@@ -127,7 +184,14 @@
                     this.waiting = false;
 
                     /* TO DO */
-                    console.log(response);
+                    const {album, coverThumb, title, authorName} = response.data.music;
+                    this.album = album;
+                    this.coverThumb = coverThumb;
+                    this.title = title;
+                    this.author = authorName;
+
+                    this.$bvModal.hide('music-modal');
+                    this.openMusicModal('music-info-modal');
 
                     this.error = null;
                 }).catch(error => {
@@ -137,6 +201,32 @@
                         this.error = 'Не удалось найти трек, попробуйте еще раз';
                     }
                 });
+            },
+
+            addMusic() {
+              this.waiting = true;
+              this.error = null;
+
+              axios.post(ADD_MUSIC,
+                {
+                  title: this.title,
+                  author: this.author,
+                  album: this.album,
+                  image: this.coverThumb,
+                  url: this.val
+                  })
+                .then(response => {
+                this.waiting = false;
+                this.error = null;
+              }).catch(error => {
+                console.log(error);
+                this.waiting = false;
+                if(error !== undefined) {
+                  this.error = 'Не удалось добавить трек, попробуйте еще раз';
+                }
+              }).finally( () => {
+                this.$bvModal.hide('music-info-modal');
+              });
             }
         }
 
