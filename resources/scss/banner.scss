@@ -1,24 +1,27 @@
 .banner {
+  max-width: 972px;
   width: 100%;
-  padding: 28px 33px;
+  margin-top: 4px;
+  padding: 31px 33px 27px;
   background-image: url("../images/banner-bg.png");
   background-size: contain;
-  background-position: right;
+  background-position: 93% 0;
   background-repeat: no-repeat;
   background-color: #fff;
   box-shadow: 0px 11px 39px -14px #D1D5DD;
   border-radius: 24px;
+
   &__title {
     max-width: 193px;
     margin-bottom: 20px;
     font-size: 24px;
     font-weight: 600;
-    line-height: 26.4px;
+    line-height: 25px;
     color: #242731;
   }
 
   &__descr {
-    max-width: 257px;
+    max-width: 250px;
     margin-bottom: 20px;
     font-weight: 400;
     font-size: 13px;
@@ -27,7 +30,7 @@
   }
 
   &__btn {
-    padding: 13px 26px 13px 36px;
+    padding: 13px 15px 10px 41px;
     color: #fff;
     background-color: #6C5DD3;;
     background-image:url('../images/icon_plus_primary.svg');
@@ -35,7 +38,12 @@
     background-position: 10px center;
     background-repeat: no-repeat;
     border-radius: 12px;
-    transition: color 0.33s ease-in-out;
+    transition: background-color 0.33s ease-in-out;
+
+    &:hover {
+      background-color: #3D337C;
+      color: #fff;
+    }
   }
 
 }

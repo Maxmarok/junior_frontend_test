@@ -995,6 +995,12 @@
     }
   }
 
+//@media only screen and (max-width: 1024px) {
+//  .page__center.wide {
+//    max-width: 68vw;
+//  }
+//}
+
   @media only screen and (max-width: 767px) {
     .modal-dialog.modal-xl {
         max-width: 900px;
@@ -1043,6 +1049,9 @@
     .page__center {
       padding: 30px 16px 0;
     }
+    //.page__center.wide {
+    //  max-width: 90vw;
+    //}
     .page__row_head {
       padding: 0;
     }
