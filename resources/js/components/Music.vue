@@ -81,8 +81,8 @@
                             <img v-bind:src="item.image" /> 
                         </div>
                         <div class="products__details">
-                            <div class="products__details album color-gray">{{ item.album }}</div>
-                            <div class="products__details author color-gray">{{ item.authorName }}</div>
+                            <div class="products__details album color-gray">{{ item.title }}</div>
+                            <div class="products__details author color-gray">{{ item.author }}</div>
                         </div>
                     </div>
                 </div>
@@ -188,6 +188,7 @@
             getMusicList() {
                 axios.get(GET_MUSIC_LIST).then(response => {
                     this.items = response.data;
+                    console.log(response.data)
                 });
             },
 
