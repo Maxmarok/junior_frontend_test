@@ -156,10 +156,6 @@
             this.getMusicList();
         },
 
-        updated() {
-          this.getMusicList();
-        },
-
       computed: {
             ...mapGetters(['user', 'userAuthorized', 'url', 'tablet', 'mobile']),
         },
@@ -218,6 +214,12 @@
                 .then(response => {
                 this.waiting = false;
                 this.error = null;
+
+                if (response.status === 200) {
+                  this.getMusicList();
+                  this.val = null;
+                }
+
               }).catch(error => {
                 console.log(error);
                 this.waiting = false;
