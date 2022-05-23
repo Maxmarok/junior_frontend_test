@@ -7,7 +7,7 @@
                     <div class="page__welcome h2">Привет 👋</div>
                 </div>
 
-                <div class="mt-4 mt-sm-0">
+                <div class="mt-4 mt-sm-0 page__status">
                     <p class="mb-2">
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <circle class="color" cx="7" cy="7" r="6.5" fill="#7FBA7A"/>
@@ -26,14 +26,14 @@
             </div>
         </div>
 
-        <div class="page__row" v-if="mobile">
+        <div class="page__row" v-if="mobile && items.length">
             <div class="d-flex flex-row align-items-center justify-content-between mobile-btn">
                 <h1>Мои треки</h1>
                 <img :src="url + 'img/icon_plus_main.svg'" @click="openMusicModal('music-modal')" class="mb-2" />
             </div>
         </div>
 
-        <div class="page__row" v-if="mobile">
+        <div class="page__row" v-if="mobile && items.length">
              <div class="page__panel">
                 <p>
                     <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,9 +59,9 @@
                 <div class="page__banner banner" v-if="!items.length">
                     <h2 class="banner__title">Загрузи свой первый трек</h2>
                     <p class="banner__descr">
-                        Твои будущие фанаты ждут! Жми на кнопку «добавить трек» и переходи к продвижению прямо сейчас.
+                        Твои будущие фанаты ждут! Жми на&nbsp;кнопку «добавить трек» и переходи к продвижению прямо сейчас.
                     </p>
-                    <div class="products__item" @click="openMusicModal('music-modal')" v-if="!mobile">
+                    <div class="products__item" @click="openMusicModal('music-modal')">
                         <button class="btn banner__btn">Добавить трек</button>
                     </div>
                 </div>

@@ -12,9 +12,9 @@
         color: #808191;
     }
 
-  .mobile-btn {
-    cursor: pointer;
-  }
+    .mobile-btn {
+      cursor: pointer;
+    }
 
     .footer {
         flex-wrap: wrap;
@@ -41,12 +41,13 @@
     .page__center {
       width: 100%;
       max-width: initial;
-      padding: 0 70px 40px;
+      padding: 8px 36px 0;
+      //padding: 0 70px 40px;
       margin-left: auto;
       margin-right: 0;
     }
     .page__center.wide {
-        max-width: 90vw;
+        max-width: 68vw;
     }
     .page__row {
       display: block;
@@ -148,10 +149,7 @@
       padding: 0;
       border: none;
     }
-    .page__hello {
-      font-size: 18px;
-      line-height: 1.33333;
-    }
+
     .page_other .page__center {
       padding-bottom: 0;
     }
@@ -201,6 +199,16 @@
       right: 50px;
       width: 330px;
     }
+
+    .banner {
+      width: 99%;
+      margin-top: 17px;
+      margin-left: 7px;
+      padding: 25px 31px 28px;
+      background-image: url(../images/banner-tablet-bg.png);
+      background-position: 98%;
+    }
+
     .sorting {
       padding: 20px 20px 0;
     }
@@ -350,8 +358,36 @@
       line-height: 1.5;
     }
 
+    .page__hello {
+      padding-top: 8px;
+      font-size: 24px;
+      line-height: 37px
+    }
+
+    .page__welcome {
+      padding-left: 6px;
+      font-size: 34px;
+      line-height: 1;
+    }
+
     .page__stat {
         padding: 10px 0;
+    }
+
+    .page__status {
+      display: flex;
+      margin-top: 27px !important;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      p {
+        margin-bottom: 0 !important;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: right;
+      }
     }
 
     .products__cell:first-child {
@@ -609,7 +645,7 @@
       max-width: 300px;
     }
     .banner__title {
-      margin-bottom: 6px;
+      margin-bottom: 16px;
       line-height: 1.2;
     }
     .banner__preview {
@@ -961,6 +997,12 @@
     }
   }
 
+  @media all and (max-width: 998px) {
+    .page__center.wide {
+      max-width: 98vw;
+    }
+  }
+
   @media all and (max-width: 900px) {
     .mfp-arrow {
       -webkit-transform: scale(0.75);
@@ -989,17 +1031,7 @@
     .mfp-container {
       padding: 30px 20px;
     }
-    .banner {
-      background-position: 150%;
-      background-size: 76% 102%;
-    }
   }
-
-//@media only screen and (max-width: 1024px) {
-//  .page__center.wide {
-//    max-width: 68vw;
-//  }
-//}
 
   @media only screen and (max-width: 767px) {
     .modal-dialog.modal-xl {
@@ -1049,9 +1081,6 @@
     .page__center {
       padding: 30px 16px 0;
     }
-    //.page__center.wide {
-    //  max-width: 90vw;
-    //}
     .page__row_head {
       padding: 0;
     }
@@ -1510,6 +1539,9 @@
       padding: 30px;
       margin: 0 auto;
       text-align: center;
+    }
+    .banner__btn {
+      padding: 13px 15px 10px 41px;
     }
     // .sorting {
     //   padding: 0 24px;
@@ -2150,17 +2182,59 @@
 
 @media (max-width: 640px) {
   .banner {
-    min-height: 500px;
-    background-position: bottom left;
-    background-size: 159% 98%;
+    min-height: 400px;
+    background-position: bottom;
   }
 
 }
 
-@media (max-width: 486px) {
+@media (max-width: 375px) {
+  .page__center.wide {
+    max-width: 92vw;
+  }
+
+  .page__center {
+    padding: 36px 16px 0;
+  }
+
+  .page__panel {
+    margin-bottom: 9px;
+    padding: 7px 18px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 14px;
+    //
+    //p:first-of-type {
+    //  margin-right: 41px;
+    //}
+
+    span {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  }
+
+  .products__info {
+    padding-top: 0;
+  }
+
+  .mobile-btn {
+    h1 {
+      font-weight: 600;
+      font-size: 32px;
+      line-height: 100%;
+    }
+  }
+
   .banner {
-    background-image: url("../images/mobile-banner-bg.png");
-    background-position: bottom center;
-    background-size: 103% 76%;
+    min-height: 500px;
+    margin-top: -2px;
+    margin-left: 3px;
+    padding: 29px 30px 23px;
+    background-image: url(../images/mobile-banner-bg.png);
+
+    &__btn {
+      padding: 13px 15px 10px 41px;
+    }
   }
 }
