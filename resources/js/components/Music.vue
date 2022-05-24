@@ -72,7 +72,7 @@
                             <div class="products__title title">Добавить трек</div>
                         </div>
                     </div>
-                    <div class="products__item" v-for="item in items">
+                    <div class="products__item" v-for="item in items" :key="item.id">
                       <div class="products__cover">
                         <img :src="item.image" alt="Фото обложки">
                       </div>
@@ -142,6 +142,7 @@
                 editing: false,
                 val: this.value,
                 music: null,
+                id: null,
                 title: null,
                 author: null,
                 album: null,
@@ -180,11 +181,12 @@
                     this.waiting = false;
 
                     /* TO DO */
-                    const {album, coverThumb, title, authorName} = response.data.music;
+                    const {album, coverThumb, title, authorName, id} = response.data.music;
                     this.album = album;
                     this.coverThumb = coverThumb;
                     this.title = title;
                     this.author = authorName;
+                    this.id = id;
 
                     this.$bvModal.hide('music-modal');
                     this.openMusicModal('music-info-modal');
