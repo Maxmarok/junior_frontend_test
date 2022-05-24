@@ -548,7 +548,7 @@
   }
 
   .page__col {
-    padding: 0 38px 25px 64px;
+    padding: 0 38px 25px 111px;
     position: relative;
     width: 100%;
   }
@@ -755,4 +755,22 @@
     background: #242731;
     border-color: #242731;
     color: #6c757d;
+  }
+
+  .page {
+    &__hello {
+      margin-bottom: 0;
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 32px;
+      color: #11142D;
+    }
+
+    &__welcome {
+      margin-bottom: 0;
+      font-weight: 600;
+      font-size: 34px;
+      line-height: 42px;
+      color: #11142D;
+    }
   }
